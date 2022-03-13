@@ -1,6 +1,7 @@
-double T = 2000; //代表开始的温度
-double dT = 0.99; //代表系数delta T
-double eps = 1e-14; //相当于0.0000000000000001
+%%利用C++程序语言编写
+double T = 2000; //代表初始的温度
+double dT = 0.99; //代表下降系数delta T
+double eps = 1e-14; //温度下限
 
 //用自变量计算函数值,这里可能存在多个自变量对应一个函数值的情况，比如f(x,y)
 double func(int x, ... ) {
@@ -9,6 +10,7 @@ double func(int x, ... ) {
     return ans;
 }
 //原始值
+//main
 double x = rand(); //x0取随机值
 double f = func(x,...); //通过自变量算出f(x0)的值
 while(T > eps) {
@@ -17,25 +19,25 @@ while(T > eps) {
     
     //x1可以左右随机移动，幅度和温度T正相关，所以*T
     //注意这里移动可以左右移动，但是也可以单向移动
-    //关于rand()详细见开头注的①
-    double dx = x + (2*rand() - RAND_MAX) * T; 
+    double dx = x + (2*rand() - RAND_MAX) * T; //
     
     //让x落在定义域内，如果没在里面，就重新随机。题目有要求需要写，否则不用写
     // ================
-    while(x > ? || x < ? ...) {
+    while(x > ? || x < ? ...) //随机值的选取要在定义域内
+    {
         double dx = x + (2*rand() - RAND_MAX) * T; 
     }
     // ================
     
     //求出f(x1)的值
     double df = func(dx);
-    //这里需要具体问题具体分析，我们要接受更加优秀的情况。可能是df < f(比如求最小值）
+    //这里需要具体问题具体分析，我们要接受的是更加稳定的情况。可能是df < f(比如求最小值）
     if(f < df) {
         f = df; x = dx;  [...,y = dy;] // 接受，替换值，如果多个自变量，那么都替换
     }
     //否则概率接受，注意这里df-f也要具体问题具体分析。
-    //详细见开头注的②③
-    else if(exp((df - f) / T) * RAND_MAX > rand()) {
+    else if(exp((df - f) / T) * RAND_MAX > rand())
+    {
         f = df; x = dx;  [...y = dy;] // 接受，替换值，如果多个自变量，那么都替换
     }
 	//--------------
@@ -43,3 +45,4 @@ while(T > eps) {
 }
 //最后输出靠近最优的自变量x值，和函数值f(x)
 cout << x << " " << f << endl;
+//
