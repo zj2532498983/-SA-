@@ -13,7 +13,8 @@ double func(int x, ... ) {
 //main
 double x = rand(); //x0取随机值
 double f = func(x,...); //通过自变量算出f(x0)的值
-while(T > eps) {
+while(T > eps)//截止条件
+{
     //--------------
     //这里是每一次退火的操作
     
